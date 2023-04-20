@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-20T12:57:53.495Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="mCvu-o_phK-gxH7OmVsl" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-20T12:59:25.701Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="jEf7hACYz2zJKIIf9O3O" version="21.2.1" type="github">
   <diagram name="Page-1" id="AZhgo__BEIIF-JYw-Mxj">
     <mxGraphModel dx="2284" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -56,7 +56,7 @@
         <mxCell id="cLlq7skqqOOSIgNOw3ur-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="cLlq7skqqOOSIgNOw3ur-10" target="NO40qMgpg6h3hOK221bb-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cLlq7skqqOOSIgNOw3ur-10" value="DynameDB" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.dynamo_db;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="cLlq7skqqOOSIgNOw3ur-10" value="DynamoDB" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.dynamo_db;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="40" y="237" width="72" height="81" as="geometry" />
         </mxCell>
         <mxCell id="cLlq7skqqOOSIgNOw3ur-13" value="3rd party SMS Gateway" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
