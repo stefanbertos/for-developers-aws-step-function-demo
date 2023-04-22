@@ -20,6 +20,15 @@ function App() {
             >Create new Event
             </Button><EventCardCollection overrideItems={({item, index}) => ({
                 overrides: {
+                    "Start": {
+                        defaultValue: item.start
+                    },
+                    "End": {
+                        defaultValue: item.end
+                    },
+                    "Name": {
+                        defaultValue: item.name
+                    },
                     "UpdateButton": {
                         onClick: () => {
                             setEvent(item);

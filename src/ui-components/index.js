@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as EventCardCollection } from "./EventCardCollection";
 export { default as EventCard } from "./EventCard";
+export { default as EventCardCollection } from "./EventCardCollection";
 export { default as studioTheme } from "./studioTheme";
+export { default as EventCreateForm } from "./EventCreateForm";
+export { default as EventUpdateForm } from "./EventUpdateForm";
