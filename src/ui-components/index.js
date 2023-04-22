@@ -7,5 +7,3 @@
 export { default as EventCardCollection } from "./EventCardCollection";
 export { default as EventCard } from "./EventCard";
 export { default as studioTheme } from "./studioTheme";
-export { default as EventCreateForm } from "./EventCreateForm";
-export { default as EventUpdateForm } from "./EventUpdateForm";
