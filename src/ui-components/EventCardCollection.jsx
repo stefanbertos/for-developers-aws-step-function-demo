@@ -29,9 +29,12 @@ export default function EventCardCollection(props) {
   }, [itemsProp, itemsDataStore]);
   return (
     <Collection
-      type="list"
-      direction="column"
-      justifyContent="left"
+      type="grid"
+      searchPlaceholder="Search..."
+      templateColumns="1fr 1fr 1fr 1fr"
+      autoFlow="row"
+      alignItems="stretch"
+      justifyContent="stretch"
       items={items || []}
       {...getOverrideProps(overrides, "EventCardCollection")}
       {...rest}
@@ -39,6 +42,9 @@ export default function EventCardCollection(props) {
       {(item, index) => (
         <EventCard
           model={item}
+          height="auto"
+          width="auto"
+          margin="0 5px 0 0"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
         ></EventCard>

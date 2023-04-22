@@ -12,8 +12,6 @@ function App() {
 
     return (
         <div>
-
-
             {(collectionVisible ? (<><Button
                 onClick={() => {
                     setCreateVisible(true);

@@ -95,7 +95,7 @@ export default function EventCard(props) {
           width="unset"
           height="unset"
           shrink="0"
-          backgroundColor="rgba(102,0,0,1)"
+          backgroundColor="rgba(191,64,64,1)"
           size="large"
           isDisabled={false}
           variation="primary"
