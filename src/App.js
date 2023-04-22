@@ -1,25 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import {EventCardCollection, EventCreateForm, EventUpdateForm} from './ui-components';
+import {Button} from "@aws-amplify/ui-react";
+import {useState} from "react";
+import {DataStore} from "aws-amplify";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [collectionVisible, setCollectionVisible] = useState(true);
+    const [createVisible, setCreateVisible] = useState(false);
+    const [event, setEvent] = useState();
+
+    return (
+        <div>
+
+
+            {(collectionVisible ? (<><Button
+                onClick={() => {
+                    setCreateVisible(true);
+                    setCollectionVisible(false);
+                }}
+            >Create new Event
+            </Button><EventCardCollection overrideItems={({item, index}) => ({
+                overrides: {
+                    "UpdateButton": {
+                        onClick: () => {
+                            setEvent(item);
+                            setCreateVisible(false);
+                            setCollectionVisible(false);
+                        }
+                    },
+                    "DeleteButton": {
+                        onClick: () => {
+                            DataStore.delete(item);
+                        }
+                    }
+                }
+            })}/></>) : (createVisible ? (<EventCreateForm onSuccess={() => {
+                setCollectionVisible(true);
+                setCreateVisible(false)
+            }}/>) : (
+                <EventUpdateForm event={event} onSuccess={() => {
+                    setCollectionVisible(true);
+                    setCreateVisible(false)
+                }}/>)))}
+
+        </div>
+    );
 }
 
 export default App;
