@@ -6,11 +6,27 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { Event } from "../models";
+import {
+  getOverrideProps,
+  useDataStoreBinding,
+} from "@aws-amplify/ui-react/internal";
 import EventCard from "./EventCard";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Collection } from "@aws-amplify/ui-react";
 export default function EventCardCollection(props) {
-  const { items, overrideItems, overrides, ...rest } = props;
+  const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const [items, setItems] = React.useState(undefined);
+  const itemsDataStore = useDataStoreBinding({
+    type: "collection",
+    model: Event,
+  }).items;
+  React.useEffect(() => {
+    if (itemsProp !== undefined) {
+      setItems(itemsProp);
+      return;
+    }
+    setItems(itemsDataStore);
+  }, [itemsProp, itemsDataStore]);
   return (
     <Collection
       type="grid"
@@ -25,6 +41,7 @@ export default function EventCardCollection(props) {
     >
       {(item, index) => (
         <EventCard
+          model={item}
           height="auto"
           width="auto"
           margin="0 5px 0 0"

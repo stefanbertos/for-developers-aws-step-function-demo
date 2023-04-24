@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, TextAreaField, TextField } from "@aws-amplify/ui-react";
 export default function EventCard(props) {
-  const { overrides, ...rest } = props;
+  const { model, overrides, ...rest } = props;
   return (
     <Flex
       gap="24px"
@@ -37,6 +37,7 @@ export default function EventCard(props) {
         isDisabled={true}
         labelHidden={false}
         variation="default"
+        defaultValue={model?.start}
         {...getOverrideProps(overrides, "Start")}
       ></TextField>
       <TextField
@@ -50,6 +51,7 @@ export default function EventCard(props) {
         isDisabled={true}
         labelHidden={false}
         variation="default"
+        defaultValue={model?.end}
         {...getOverrideProps(overrides, "End")}
       ></TextField>
       <TextAreaField
@@ -63,6 +65,7 @@ export default function EventCard(props) {
         isDisabled={true}
         labelHidden={false}
         variation="default"
+        defaultValue={model?.name}
         {...getOverrideProps(overrides, "Name")}
       ></TextAreaField>
       <Flex

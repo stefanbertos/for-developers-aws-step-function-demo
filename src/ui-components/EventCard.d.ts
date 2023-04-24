@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { Event } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, FlexProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -18,6 +19,8 @@ export declare type EventCardOverridesProps = {
     DeleteButton?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EventCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    model?: Event;
+} & {
     overrides?: EventCardOverridesProps | undefined | null;
 }>;
 export default function EventCard(props: EventCardProps): React.ReactElement;
