@@ -10,6 +10,22 @@
       "StackName": "amplify-demo-staging-174357",
       "StackId": "arn:aws:cloudformation:eu-central-1:536115498177:stack/amplify-demo-staging-174357/426eb020-e135-11ed-86d6-06265fd9fab6",
       "AmplifyAppId": "d2fxisk4e8eg7f"
+    },
+    "categories": {
+      "function": {
+        "smsFunction": {
+          "secretsPathAmplifyAppId": "d2fxisk4e8eg7f",
+          "deploymentBucketName": "amplify-demo-staging-174357-deployment",
+          "s3Key": "amplify-builds/smsFunction-4b395954536273346472-build.zip"
+        },
+        "eventStreamFunction": {
+          "deploymentBucketName": "amplify-demo-staging-174357-deployment",
+          "s3Key": "amplify-builds/eventStreamFunction-624672753151355a4b4a-build.zip"
+        }
+      },
+      "api": {
+        "demo": {}
+      }
     }
   }
 }

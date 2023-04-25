@@ -21,5 +21,70 @@
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     }
+  },
+  "function": {
+    "eventStreamFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "demo"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "smsFunction": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_eventStreamFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "eventStreamFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_eventStreamFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "eventStreamFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_smsFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "smsFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_smsFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "smsFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_smsFunction_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "smsFunction"
+        }
+      ]
+    }
   }
 }

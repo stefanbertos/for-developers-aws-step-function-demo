@@ -1,0 +1,13 @@
+[
+  {
+    "Action": ["states:StartExecution"],
+    "Resource": ["arn:aws:states:eu-central-1:536115498177:stateMachine:MyStateMachine"]
+  },
+  {
+    "Action": [ "states:DescribeExecution",
+      "states:DescribeStateMachineForExecution",
+      "states:GetExecutionHistory",
+      "states:StopExecution"],
+    "Resource": ["arn:aws:states:eu-central-1:536115498177:execution:MyStateMachine:*"]
+  }
+]
