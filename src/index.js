@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from "@aws-amplify/ui-react";
-import {Amplify, AuthModeStrategyType} from 'aws-amplify';
+import {Amplify} from 'aws-amplify';
 
 import awsconfig from './aws-exports';
 
@@ -18,7 +18,6 @@ Amplify.configure({
         maxRecordsToSync: 100000,
         syncPageSize: 10000,
         fullSyncInterval: 24*60, //24 hodin
-        authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
         errorHandler: (error) => {
             console.log("DataStore unrecoverable error", JSON.stringify(error));
         }

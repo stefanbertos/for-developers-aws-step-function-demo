@@ -29,16 +29,15 @@ async function callStepFunction(eventId, phone, start) {
     const timestamp = addHours(parseISO(start), -24).toISOString()
     const day = format(parseISO(start), 'dd.LL.yyyy');
     const time = formatInTimeZone(new Date(start), 'Europe/Prague', 'HH:mm');
-    const inputData = JSON.parse(input).input;
     const params = {
-        stateMachineArn: "arn:aws:states:eu-central-1:894670807531:stateMachine:MyStateMachine",
+        stateMachineArn: "arn:aws:states:eu-central-1:536115498177:stateMachine:MyStateMachine",
         input: JSON.stringify({
             "input": {
                 "timestamp": timestamp,
                 "day": day,
                 "time": time,
                 "phoneNumber": phone,
-                "eventTable": "testr",
+                "eventTable": "Event-y4svjrv34fhnpjiymnzkg2n6tq-staging",
                 "eventId": eventId
             }
         })
@@ -71,6 +70,9 @@ export const handler = async (event) => {
         const phone = record.dynamodb.NewImage.phone.S
         const id = record.dynamodb.NewImage.id.S
 
+        if (record.eventName === 'CREATE') {
+            await callStepFunction(id, phone, newStart);
+        }
         /*  if (record.eventName === 'MODIFY') {
         if (deleted === true) {
         await stopStepFunction(executionArn);
@@ -79,9 +81,7 @@ export const handler = async (event) => {
         await callStepFunction(id, phone, newStart);
         }
         }
-        if (record.eventName === 'CREATE') {
-        await callStepFunction(id, phone, newStart);
-        }*/
+        */
     }
     const response = {
         statusCode: 200, headers: {
