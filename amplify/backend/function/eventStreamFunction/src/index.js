@@ -65,12 +65,12 @@ export const handler = async (event) => {
 
         const executionArn = record.dynamodb.NewImage.executionArn?.S
         const deleted = record.dynamodb.NewImage._deleted?.BOOL
-        const oldStart = record.dynamodb.OldImage.start.S
+        const oldStart = record.dynamodb.OldImage?.start?.S
         const newStart = record.dynamodb.NewImage.start.S
         const phone = record.dynamodb.NewImage.phone.S
         const id = record.dynamodb.NewImage.id.S
 
-        if (record.eventName === 'CREATE') {
+        if (record.eventName === 'INSERT') {
             await callStepFunction(id, phone, newStart);
         }
         /*  if (record.eventName === 'MODIFY') {
