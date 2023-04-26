@@ -16,11 +16,11 @@
         "smsFunction": {
           "secretsPathAmplifyAppId": "d2fxisk4e8eg7f",
           "deploymentBucketName": "amplify-demo-staging-174357-deployment",
-          "s3Key": "amplify-builds/smsFunction-4b395954536273346472-build.zip"
+          "s3Key": "amplify-builds/smsFunction-48496d684c57745a586a-build.zip"
         },
         "eventStreamFunction": {
           "deploymentBucketName": "amplify-demo-staging-174357-deployment",
-          "s3Key": "amplify-builds/eventStreamFunction-624672753151355a4b4a-build.zip"
+          "s3Key": "amplify-builds/eventStreamFunction-5162576d4d72342f7973-build.zip"
         }
       },
       "api": {
