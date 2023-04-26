@@ -81,10 +81,10 @@ export const handler = async (event) => {
             await callStepFunction(id, phone, newStart);
         }
         if (record.eventName === 'MODIFY') {
-            if (deleted === true) {
-                await stopStepFunction(executionArn);
+            if (deleted === true && newExecutionArn !== undefined) {
+                await stopStepFunction(newExecutionArn);
             } else if (oldExecutionArn === newExecutionArn && newExecutionArn !== undefined && oldStart !== newStart) {
-                await stopStepFunction(executionArn);
+                await stopStepFunction(newExecutionArn);
                 await callStepFunction(id, phone, newStart);
             }
         }
