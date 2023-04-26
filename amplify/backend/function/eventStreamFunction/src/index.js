@@ -1,4 +1,10 @@
 /* Amplify Params - DO NOT EDIT
+	API_DEMO_EVENTTABLE_ARN
+	API_DEMO_EVENTTABLE_NAME
+	API_DEMO_GRAPHQLAPIIDOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//* Amplify Params - DO NOT EDIT
 ENV
 REGION
 Amplify Params - DO NOT EDIT */
@@ -37,14 +43,14 @@ async function callStepFunction(eventId, phone, start) {
                 "day": day,
                 "time": time,
                 "phoneNumber": phone,
-                "eventTable": "Event-y4svjrv34fhnpjiymnzkg2n6tq-staging",
+                "eventTable": process.env.API_DEMO_EVENTTABLE_NAME,
                 "eventId": eventId
             }
         })
     };
     const command = new StartExecutionCommand(params);
     try {
-        console.log('before callStepFunction', command, input);
+        console.log('before callStepFunction', command);
         const data = await sfnClient.send(command);
         console.log('after callStepFunction', command, data);
         await updateSmsNotificationArn(eventId, data.executionArn);
@@ -63,7 +69,8 @@ export const handler = async (event) => {
         console.log(record.eventName);
         console.log('DynamoDB Record: %j', record.dynamodb);
 
-        const executionArn = record.dynamodb.NewImage.executionArn?.S
+        const oldExecutionArn = record.dynamodb.OldImage.executionArn?.S
+        const newExecutionArn = record.dynamodb.NewImage.executionArn?.S
         const deleted = record.dynamodb.NewImage._deleted?.BOOL
         const oldStart = record.dynamodb.OldImage?.start?.S
         const newStart = record.dynamodb.NewImage.start.S
@@ -73,15 +80,14 @@ export const handler = async (event) => {
         if (record.eventName === 'INSERT') {
             await callStepFunction(id, phone, newStart);
         }
-        /*  if (record.eventName === 'MODIFY') {
-        if (deleted === true) {
-        await stopStepFunction(executionArn);
-        } else if (oldStart !== newStart) {
-        await stopStepFunction(executionArn);
-        await callStepFunction(id, phone, newStart);
+        if (record.eventName === 'MODIFY') {
+            if (deleted === true) {
+                await stopStepFunction(executionArn);
+            } else if (oldExecutionArn === newExecutionArn && newExecutionArn !== undefined && oldStart !== newStart) {
+                await stopStepFunction(executionArn);
+                await callStepFunction(id, phone, newStart);
+            }
         }
-        }
-        */
     }
     const response = {
         statusCode: 200, headers: {

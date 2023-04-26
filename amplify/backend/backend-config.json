@@ -28,8 +28,7 @@
       "dependsOn": [
         {
           "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
+            "GraphQLAPIIdOutput"
           ],
           "category": "api",
           "resourceName": "demo"
