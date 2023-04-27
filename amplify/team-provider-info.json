@@ -20,7 +20,7 @@
         },
         "eventStreamFunction": {
           "deploymentBucketName": "amplify-demo-staging-174357-deployment",
-          "s3Key": "amplify-builds/eventStreamFunction-66506675694b2f723231-build.zip"
+          "s3Key": "amplify-builds/eventStreamFunction-3765672b5744666d7767-build.zip"
         }
       },
       "api": {
