@@ -16,7 +16,7 @@
         "smsFunction": {
           "secretsPathAmplifyAppId": "d2fxisk4e8eg7f",
           "deploymentBucketName": "amplify-demo-staging-174357-deployment",
-          "s3Key": "amplify-builds/smsFunction-4743794a48746c4b3742-build.zip"
+          "s3Key": "amplify-builds/smsFunction-4245546b32517a74306c-build.zip"
         },
         "eventStreamFunction": {
           "deploymentBucketName": "amplify-demo-staging-174357-deployment",

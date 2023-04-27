@@ -14,7 +14,7 @@ export const handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
     let phoneNumber = event.input.phoneNumber;
-    if (phone.startsWith('+420'))
+    if (phoneNumber.startsWith('+420'))
         phoneNumber = phoneNumber.substring(1, phoneNumber.length);
 
     const {data} = await got.post("https://portal.bulkgate.com/api/1.0/simple/transactional", {
