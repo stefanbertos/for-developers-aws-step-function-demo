@@ -81,6 +81,7 @@ async function startStepFunction(eventId, phone, start) {
                 "timestamp": timestamp,
                 "day": day,
                 "time": time,
+                "text": "This is a notification for event at " + start,
                 "phoneNumber": phone,
                 "eventTable": process.env.API_DEMO_EVENTTABLE_NAME,
                 "eventId": eventId

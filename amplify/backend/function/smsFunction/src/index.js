@@ -13,12 +13,16 @@ const secret = JSON.parse(parameter.Parameter.Value);
 export const handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
+    let phoneNumber = event.input.phoneNumber;
+    if (phone.startsWith('+420'))
+        phoneNumber = phoneNumber.substring(1, phoneNumber.length);
+
     const {data} = await got.post("https://portal.bulkgate.com/api/1.0/simple/transactional", {
         json: {
             application_id: secret.smsApplicationId,
             application_token: secret.smsToken,
-            number: event.phoneNumber,
-            text: event.text,
+            number: phoneNumber,
+            text: event.input.text,
             sender_id: 'gText',
             sender_id_value: 'BulkGate'
         }
