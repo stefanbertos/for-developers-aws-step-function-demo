@@ -17,19 +17,68 @@ const sfnClient = new SFNClient({region: process.env['REGION']});
 const GRAPHQL_ENDPOINT = process.env.API_DEMO_GRAPHQLAPIENDPOINTOUTPUT;
 const GRAPHQL_API_KEY = process.env.API_DEMO_GRAPHQLAPIKEYOUTPUT;
 
-async function updateExecutionArn(eventId, executionArn) {
+async function getLatestVersionEvent(eventId) {
+    const query = /* GraphQL */ `
+        query GET_EVENT($input: ID!) {
+            getEvent(id: $input) {
+                id
+                _version
+            }
+        }
+    `;
+    const variables = {
+        input: eventId
+    };
+    /** @type {import('node-fetch').RequestInit} */
+    const options = {
+        method: 'POST',
+        headers: {
+            'x-api-key': GRAPHQL_API_KEY
+        },
+        body: JSON.stringify({query, variables})
+    };
+
+    console.log('getLatestVersionEvent', GRAPHQL_ENDPOINT, options);
+    const request = new Request(GRAPHQL_ENDPOINT, options);
+
+    let body;
+    let response;
+
+    try {
+        response = await fetch(request);
+        body = await response.json();
+        const version = body.data.getEvent._version;
+        console.log('getLatestVersionEvent result', version);
+        return version;
+    } catch (error) {
+        console.log(error);
+    }
+
+    return {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        },
+        body: JSON.stringify('OK'),
+    };
+}
+
+async function updateExecutionArn(eventId, latestVersion, executionArn) {
     const query = /* GraphQL */ `
         mutation operation($input: UpdateEventInput!) {
             updateEvent(input: $input) {
                 id
                 executionArn
+                _version
             }
         }
     `;
     const variables = {
         input: {
             id: eventId,
-            executionArn: executionArn
+            executionArn: executionArn,
+            _version: latestVersion
         }
     };
     const options = {
@@ -93,7 +142,8 @@ async function startStepFunction(eventId, phone, start) {
         console.log('before startStepFunction', command);
         const data = await sfnClient.send(command);
         console.log('after startStepFunction', command, data);
-        await updateExecutionArn(eventId, data.executionArn);
+        const latestVersion = await getLatestVersionEvent(eventId);
+        await updateExecutionArn(eventId, latestVersion, data.executionArn);
     } catch (error) {
         console.log('error startStepFunction', command, error);
     }
