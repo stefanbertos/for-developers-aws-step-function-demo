@@ -14,7 +14,7 @@ import {default as fetch, Request} from 'node-fetch';
 
 const sfnClient = new SFNClient({region: process.env['REGION']});
 
-const GRAPHQL_ENDPOINT = process.env.API_DEMO_GRAPHQLAPIIDOUTPUT;
+const GRAPHQL_ENDPOINT = process.env.API_DEMO_GRAPHQLAPIENDPOINTOUTPUT;
 const GRAPHQL_API_KEY = process.env.API_DEMO_GRAPHQLAPIKEYOUTPUT;
 
 async function updateExecutionArn(eventId, executionArn) {

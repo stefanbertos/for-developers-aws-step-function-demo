@@ -3,7 +3,7 @@ type Event @model @auth(rules: [{allow: public}]) {
   start: AWSDateTime!
   end: AWSDateTime!
   name: String!
-  phone: String!
+  phone: AWSPhone!
   executionArn: String
 }
  

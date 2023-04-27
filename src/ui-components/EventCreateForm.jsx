@@ -49,7 +49,7 @@ export default function EventCreateForm(props) {
     start: [{ type: "Required" }],
     end: [{ type: "Required" }],
     name: [{ type: "Required" }],
-    phone: [{ type: "Required" }],
+    phone: [{ type: "Required" }, { type: "Phone" }],
     executionArn: [],
   };
   const runValidationTasks = async (
@@ -237,6 +237,7 @@ export default function EventCreateForm(props) {
         label="Phone"
         isRequired={true}
         isReadOnly={false}
+        type="tel"
         value={phone}
         onChange={(e) => {
           let { value } = e.target;
