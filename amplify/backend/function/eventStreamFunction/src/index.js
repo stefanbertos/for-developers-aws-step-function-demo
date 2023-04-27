@@ -69,7 +69,7 @@ export const handler = async (event) => {
         console.log(record.eventName);
         console.log('DynamoDB Record: %j', record.dynamodb);
 
-        const oldExecutionArn = record.dynamodb.OldImage.executionArn?.S
+        const oldExecutionArn = record.dynamodb.OldImage?.executionArn?.S
         const newExecutionArn = record.dynamodb.NewImage.executionArn?.S
         const deleted = record.dynamodb.NewImage._deleted?.BOOL
         const oldStart = record.dynamodb.OldImage?.start?.S
