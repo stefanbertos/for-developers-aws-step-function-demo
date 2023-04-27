@@ -52,16 +52,8 @@ async function getLatestVersionEvent(eventId) {
         return version;
     } catch (error) {
         console.log(error);
+        return null;
     }
-
-    return {
-        statusCode: 200,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*"
-        },
-        body: JSON.stringify('OK'),
-    };
 }
 
 async function updateExecutionArn(eventId, latestVersion, executionArn) {
