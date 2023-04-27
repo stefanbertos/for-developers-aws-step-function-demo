@@ -1,9 +1,16 @@
 {
   "lambdaLayers": [],
   "permissions": {
+    "api": {
+      "demo": [
+        "Query",
+        "Mutation"
+      ]
+    },
     "storage": {
       "Event:@model(appsync)": [
-        "read"
+        "read",
+        "update"
       ]
     }
   }

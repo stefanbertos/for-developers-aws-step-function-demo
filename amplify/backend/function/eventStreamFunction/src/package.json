@@ -8,7 +8,8 @@
   "dependencies": {
     "@aws-sdk/client-sfn": "^3.267.0",
     "date-fns": "^2.29.3",
-    "date-fns-tz": "^2.0.0"
+    "date-fns-tz": "^2.0.0",
+    "node-fetch": "^3.2.3"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92"

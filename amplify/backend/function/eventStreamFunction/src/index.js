@@ -1,18 +1,57 @@
 /* Amplify Params - DO NOT EDIT
 	API_DEMO_EVENTTABLE_ARN
 	API_DEMO_EVENTTABLE_NAME
+	API_DEMO_GRAPHQLAPIENDPOINTOUTPUT
 	API_DEMO_GRAPHQLAPIIDOUTPUT
+	API_DEMO_GRAPHQLAPIKEYOUTPUT
 	ENV
 	REGION
-Amplify Params - DO NOT EDIT *//* Amplify Params - DO NOT EDIT
-ENV
-REGION
 Amplify Params - DO NOT EDIT */
 import {SFNClient, StartExecutionCommand, StopExecutionCommand} from "@aws-sdk/client-sfn";
 import {addHours, format, parseISO} from "date-fns";
 import {formatInTimeZone} from "date-fns-tz";
+import {default as fetch, Request} from 'node-fetch';
 
 const sfnClient = new SFNClient({region: process.env['REGION']});
+
+const GRAPHQL_ENDPOINT = process.env.API_DEMO_GRAPHQLAPIIDOUTPUT;
+const GRAPHQL_API_KEY = process.env.API_DEMO_GRAPHQLAPIKEYOUTPUT;
+
+async function updateExecutionArn(eventId, executionArn) {
+    const query = /* GraphQL */ `
+        mutation operation($input: UpdateEventInput!) {
+            updateEvent(input: $input) {
+                id
+                executionArn
+            }
+        }
+    `;
+    const variables = {
+        input: {
+            id: eventId,
+            executionArn: executionArn
+        }
+    };
+    const options = {
+        method: 'POST',
+        headers: {
+            'x-api-key': GRAPHQL_API_KEY,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({query, variables})
+    };
+
+    console.log('updateExecutionArn', GRAPHQL_ENDPOINT, options);
+    const request = new Request(GRAPHQL_ENDPOINT, options);
+
+    try {
+        const response = await fetch(request);
+        const body = await response.json();
+        console.log('updateExecutionArn result', body);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 async function stopStepFunction(smsNotificationStepFunctionArn) {
 //https://docs.aws.amazon.com/en_us/AWSJavaScriptSDK/v3/latest/clients/client-sfn/classes/stopexecutioncommand.html
@@ -30,7 +69,7 @@ async function stopStepFunction(smsNotificationStepFunctionArn) {
     }
 }
 
-async function callStepFunction(eventId, phone, start) {
+async function startStepFunction(eventId, phone, start) {
 //https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sfn/classes/startexecutioncommand.html
     const timestamp = addHours(parseISO(start), -24).toISOString()
     const day = format(parseISO(start), 'dd.LL.yyyy');
@@ -50,12 +89,12 @@ async function callStepFunction(eventId, phone, start) {
     };
     const command = new StartExecutionCommand(params);
     try {
-        console.log('before callStepFunction', command);
+        console.log('before startStepFunction', command);
         const data = await sfnClient.send(command);
-        console.log('after callStepFunction', command, data);
-        await updateSmsNotificationArn(eventId, data.executionArn);
+        console.log('after startStepFunction', command, data);
+        await updateExecutionArn(eventId, data.executionArn);
     } catch (error) {
-        console.log('error callStepFunction', command, error);
+        console.log('error startStepFunction', command, error);
     }
 }
 
@@ -78,14 +117,14 @@ export const handler = async (event) => {
         const id = record.dynamodb.NewImage.id.S
 
         if (record.eventName === 'INSERT') {
-            await callStepFunction(id, phone, newStart);
+            await startStepFunction(id, phone, newStart);
         }
         if (record.eventName === 'MODIFY') {
             if (deleted === true && newExecutionArn !== undefined) {
                 await stopStepFunction(newExecutionArn);
             } else if (oldExecutionArn === newExecutionArn && newExecutionArn !== undefined && oldStart !== newStart) {
                 await stopStepFunction(newExecutionArn);
-                await callStepFunction(id, phone, newStart);
+                await startStepFunction(id, phone, newStart);
             }
         }
     }
