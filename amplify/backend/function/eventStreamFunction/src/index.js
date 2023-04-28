@@ -147,10 +147,6 @@ async function startStepFunction(eventId, phone, start) {
 export const handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
     for (const record of event.Records) {
-        console.log(record.eventID);
-        console.log(record.eventName);
-        console.log('DynamoDB Record: %j', record.dynamodb);
-
         const oldExecutionArn = record.dynamodb.OldImage?.executionArn?.S
         const newExecutionArn = record.dynamodb.NewImage.executionArn?.S
         const deleted = record.dynamodb.NewImage._deleted?.BOOL
