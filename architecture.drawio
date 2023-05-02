@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-02T16:09:12.458Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="P-asVB7_fp4m3bxVyyMj" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-02T17:30:06.083Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="fHgYbSyqD03lpQySzHaL" version="21.2.1" type="github">
   <diagram name="Page-1" id="AZhgo__BEIIF-JYw-Mxj">
     <mxGraphModel dx="2151" dy="543" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -28,14 +28,6 @@
         </mxCell>
         <mxCell id="cLlq7skqqOOSIgNOw3ur-21" value="call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="NO40qMgpg6h3hOK221bb-3" target="NO40qMgpg6h3hOK221bb-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="cLlq7skqqOOSIgNOw3ur-27" value="update execution ARN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="NO40qMgpg6h3hOK221bb-3" target="cLlq7skqqOOSIgNOw3ur-10" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="430" y="370" />
-              <mxPoint x="76" y="370" />
-            </Array>
-          </mxGeometry>
         </mxCell>
         <mxCell id="NO40qMgpg6h3hOK221bb-3" value="Step Function" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#FF4F8B;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.step_functions;" parent="1" vertex="1">
           <mxGeometry x="386" y="240" width="78" height="78" as="geometry" />
